@@ -1,5 +1,23 @@
+'''
+Simple binary tree implementation with:
+    Breadh First Search
+    Depth First Search
+'''
 from ipdb import set_trace
 
+class Stack:
+    def __init__(self):
+        self.stack = []
+
+    def insert(self, el):
+        self.stack.append(el)
+
+    def pop(self):
+        return self.stack.pop(-1)
+
+    def peek(self):
+        return self.stack[-1]
+        
 class Node:
     ''' node in a binary tree '''
     def __init__(self, value):
@@ -12,11 +30,13 @@ class Node:
         tr = 0 if self.right is None else self.right.value
         return '%d: (%d, %d)'%(self.value, tl, tr)
 
-
     def get_children(self):
         children = [child for child in [self.left, self.right]\
                 if child is not None]
         return children
+
+    def is_leaf(self):
+        return True if self.left is None and self.right is None else False
 
 class Tree:
     def __init__(self, root):
@@ -31,9 +51,6 @@ class Tree:
                 node.right = nn
                 return True
             
-        
-
-
 class BFS_iter:
     def __init__(self, tree):
         self.root = tree.root
@@ -62,22 +79,56 @@ class BFS_iter:
 
 
 class DFS_iter:
-    def __init__(self):
-        pass
+    ''' 
+    Issues:
+        O(N) of extra space (visited)
+        O(log(N)) extra space of stack
+        checks is_visited() multiple times for same node 
+    '''
+    def __init__(self, tree):
+        self.root = tree.root
 
     def __iter__(self):
-        pass
-
+        self.visited = {}
+        self.st = Stack()
+        self.st.insert(self.root)
+        return self
+ 
     def __next__(self):
-        pass
+        if len(self.st.stack) == 0:
+            raise StopIteration
+        node = self.st.peek()
+        if node.is_leaf():
+            self.st.pop()
+            return self.__next__()
+        # go center
+        if node not in self.visited:
+            self.visited[node] = True
+            return node
+        # go left
+        left = node.left
+        if left not in self.visited:
+            self.st.insert(left)
+            self.visited[left] = True
+            return left
+        # go right
+        right = node.right
+        if right not in self.visited:
+            self.st.insert(right)
+            self.visited[right] = True
+            return right
+        # go up
+        self.st.pop()
+        return self.__next__()
 
-
-root = Node(666)
+root = Node(1)
 tree = Tree(root)
-set_trace()
-for i in range(1,10):
+for i in range(2,4):
     tree.insert_node(Node(i))
+set_trace()
 
+for el in DFS_iter(tree):
+    print(el)
 
 set_trace()
 
