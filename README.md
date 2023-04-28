@@ -1,17 +1,13 @@
 
-# Project TODO List
+# TODO List
 
-This is a list of tasks and features that need to be completed for the project.
+Things to do in this random repo
 
-## Tasks
+## Binary tree
 
-- [x] Task1
-- [ ] Task2
+- [ ] Encode a tree
+- [ ] Construct a tree from an encoding
 
-## Features
-
-- [x] Feature1
-- [x] Feature2
 
 ## Contributing
 
