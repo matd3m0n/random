@@ -12,7 +12,7 @@ class Stack:
         pop(): Removes and returns the element at the top of the stack.
         peek(): Returns the element at the top of the stack without removing it.
     '''
-    def __init__(self):
+    def __init__(self) -> None:
         '''
         Initializes a new instance of the Stack class.
 
@@ -20,7 +20,7 @@ class Stack:
         '''
         self.stack = []
 
-    def insert(self, el): # O(1)
+    def insert(self, el: object) -> None: # O(1)
         '''
         Inserts an element at the top of the stack.
 
@@ -29,7 +29,7 @@ class Stack:
         '''
         self.stack.append(el)
 
-    def pop(self): # O(1)
+    def pop(self) -> object: # O(1)
         '''
         Removes and returns the element at the top of the stack.
 
@@ -38,7 +38,7 @@ class Stack:
         '''
         return self.stack.pop(-1)
 
-    def peek(self): # O(1)
+    def peek(self) -> object: # O(1)
         '''
         Returns the element at the top of the stack without removing it.
 

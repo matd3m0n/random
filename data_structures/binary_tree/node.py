@@ -1,4 +1,5 @@
 from ipdb import set_trace
+from typing import List
 
         
 class Node:
@@ -13,7 +14,7 @@ class Node:
         get_children(): Retrieves the non-null children of the node.
         is_leaf(): Checks if the node is a leaf node.
     '''
-    def __init__(self, value):
+    def __init__(self, value: int) -> None:
         '''
         Initializes a new instance of the Node class.
 
@@ -24,7 +25,7 @@ class Node:
         self.left = None
         self.right = None
 
-    def __str__(self):
+    def __str__(self) -> str:
         '''
         Returns a string representation of the node.
 
@@ -37,7 +38,7 @@ class Node:
         tr = 0 if self.right is None else self.right.value
         return '%d: (%d, %d)'%(self.value, tl, tr)
 
-    def get_children(self):
+    def get_children(self) -> List['Node']:
         '''
         Retrieves the non-null children of the node.
 
@@ -48,7 +49,7 @@ class Node:
                 if child is not None]
         return children
 
-    def is_leaf(self):
+    def is_leaf(self) -> bool:
         '''
         Checks if the node is a leaf node.
 

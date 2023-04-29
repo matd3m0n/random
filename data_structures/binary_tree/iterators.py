@@ -18,6 +18,13 @@ class BFS_iter:
     Attributes:
         root: The root node of the binary tree.
 
+    CPU time:
+        O(N) - we are visiting all nodes once
+    
+    MEM:
+        O(N/2 + N/4) - We will have at most N/2 +N/4 children in the list
+
+
     Example Usage:
         tree = BinarySearchTree()
         # Populate the tree with nodes
@@ -27,7 +34,7 @@ class BFS_iter:
             # Process each node in breadth-first order
             print(node)
     '''
-    def __init__(self, tree):
+    def __init__(self, tree: 'Tree') -> None:
         '''
         Initializes a new instance of the BFS_iter class.
 
@@ -36,7 +43,7 @@ class BFS_iter:
         '''
         self.root = tree.root
 
-    def __iter__(self):
+    def __iter__(self) -> 'BFS_iter':
         '''
         Returns the iterator object itself.
 
@@ -47,7 +54,7 @@ class BFS_iter:
         self.children = [self.root]
         return self
         
-    def __next__(self):
+    def __next__(self) -> 'Node':
         '''
         Retrieves the next node in the breadth-first order traversal.
 
@@ -92,6 +99,12 @@ class DFS_iter:
     Attributes:
         root: The root node of the binary tree.
 
+    CPU time:
+        O(3N) - Visiting each node 3 times (leaves 2 times)
+    
+    MEM:
+        O(log(N)) + O(N) - log(N) of stack + N visited nodes
+
     Example Usage:
         tree = BinarySearchTree()
         # Populate the tree with nodes
@@ -102,7 +115,7 @@ class DFS_iter:
             print(node)
 
     '''
-    def __init__(self, tree):
+    def __init__(self, tree: 'Tree') -> None:
         '''
         Initializes a new instance of the DFS_iter class.
 
@@ -111,7 +124,7 @@ class DFS_iter:
         '''
         self.root = tree.root
 
-    def __iter__(self):
+    def __iter__(self) -> 'DFS_iter':
         '''
         Returns the iterator object itself.
 
@@ -123,7 +136,7 @@ class DFS_iter:
         self.st.insert(self.root)
         return self
  
-    def __next__(self):
+    def __next__(self) -> 'Node':
         '''
         Retrieves the next node in the depth-first order traversal.
 
