@@ -5,7 +5,7 @@ Things to do in this random repo
 
 ## Binary tree
 
-- [ ] split tree on root
+- [ ] ...
 
 ## Data structures
 

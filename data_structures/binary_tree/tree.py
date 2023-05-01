@@ -84,6 +84,10 @@ class Tree:
         Returns a list of string representations of each node in the tree, 
         encoded in breadth-first order.
 
+        Complexity:
+            CPU O(N)
+            MEM O(N)
+
         Returns:
             A list of string representations of nodes in the tree, encoded 
             in breadth-first order.
@@ -156,4 +160,33 @@ class Tree:
             elif node.right is None:
                 node.right = nn
                 return True
+
+    def split_root(self) -> List['Tree']:
+        '''
+        Splits the current tree's root into left and right subtrees.
+
+        Returns:
+            A list of subtrees after splitting the root.
+
+        Raises:
+            None.
+
+        Example:
+            tree = Tree(root)
+            subtrees = tree.split_root()
+        '''
+        subtrees = []
+        if self.root.left is not None:
+            t1 = Tree(self.root.left)
+            t1_enc = t1.encode_bfs()
+            t1 = Tree.from_encoding_bfs(t1_enc)
+            subtrees.append(t1)
+        if self.root.right is not None:
+            t2 = Tree(self.root.right)
+            t2_enc = t2.encode_bfs()
+            t2 = Tree.from_encoding_bfs(t2_enc)
+            subtrees.append(t2)
+        return subtrees
+
+
 
